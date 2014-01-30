@@ -1,0 +1,1191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>The Simple, Quick, and Small jQuery HTML Form Validation Solution |  The Blog of Joren Rapini</title>
+<link type="text/css" href="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/reset.css" rel="stylesheet">
+<link type="text/css" href="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/layout.css" rel="stylesheet">
+<script src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/jquery.js"></script>  
+<script src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/cufon.js" type="text/javascript"></script><style type="text/css">.cufon-canvas{text-indent:0}@media screen,projection{.cufon-canvas{display:inline;display:inline-block;position:relative;vertical-align:middle;font-size:1px;line-height:1px}.cufon-canvas .cufon-alt{display:-moz-inline-box;display:inline-block;width:0;height:0;overflow:hidden}.cufon-canvas canvas{position:relative}}@media print{.cufon-canvas{padding:0 !important}.cufon-canvas canvas{display:none}.cufon-canvas .cufon-alt{display:inline}}</style>
+<link rel="alternate" title="Joren Rapini.com RSS Feed" href="http://feeds.feedburner.com/Joren-Rapini-Web-Design-Development-Blog" type="application/rss+xml">
+<link rel="stylesheet" href="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/shCore.css" type="text/css" media="all">
+<link rel="stylesheet" href="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/shThemeDefault.css" type="text/css" media="all">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://jorenrapini.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://jorenrapini.com/wp-includes/wlwmanifest.xml"> 
+<script type="text/javascript" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/comment-reply.js"></script>
+<meta name="generator" content="WordPress 2.7.1">
+
+	<style type="text/css">.syntaxhighlighter { font-size: 12px !important; }</style>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5194496-2']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+<body>
+<div id="blog">
+<div class="container header">
+	<ul id="nav">
+    	<li><a href="http://jorenrapini.com/" class="link1">Akron, Cleveland and Northeast Ohio Web Design / Development Portfolio</a></li>
+        <li><a href="http://jorenrapini.com/#sidebar" class="link2">Akron, Cleveland and Northeast Ohio Web Design / Development Services</a></li>
+        <li><a href="http://jorenrapini.com/weblog" class="link3">Web Design and Development Blog</a></li>
+    </ul>
+    <div id="contactFormContainer">
+        <div id="contactForm">
+        	<div class="loader"></div>
+			<div class="bar"></div>
+              <form action="/mail.php" class="contactForm" name="cform" method="post">
+              	<input name="recipient" value="jorenrapini@gmail.com" type="hidden">
+                    <p>Talk to me about anything. If you’d like to work with me, or <br>even if you just need a hug, I’ll get back to you shortly.</p>
+               	<div class="input_boxes">
+                    <p><label for="name">Name</label><span id="name-missing">Please enter your name</span><br>
+                    <input id="name" name="name" type="text"></p>
+                    <p><label for="eemail">E-mail</label><span id="email-missing">Please enter a valid e-mail</span><br>
+                    <input id="eemail" name="eemail" type="text"></p>
+                    <p><label for="spamcheck">Is ice hot or cold?</label><span id="spam-missing">It's cold!</span><br>
+                    <input id="spamcheck" name="spamcheck" type="text"></p>
+                    <p><label for="message">Message</label><span id="message-missing">Say something!</span><br>
+                    <textarea id="message" rows="" cols="" name="message"></textarea></p>
+                 </div>   
+                    <input class="submit" name="submit" value="Submit Form" onfocus="this.blur()" type="submit">
+              </form>
+      </div>
+      <div class="contact"></div>    
+  </div>
+  <div id="backgroundPopup"></div>
+</div>
+
+<div id="blog_head">
+	<div class="container"></div>
+</div>    
+
+<div id="body">
+    <div class="container">
+
+<div id="blog_left">  	
+
+	
+
+		<div class="post hentry category-javascript category-tutorials category-web-development tag-form tag-html tag-javascript tag-jquery tag-validation" id="post-768">
+			<h1><span style="width: 52px; height: 30px;" class="cufon cufon-canvas"><canvas style="top: 1px; left: 0px;" height="30" width="66"></canvas><span class="cufon-alt">The </span></span><span style="width: 99px; height: 30px;" class="cufon cufon-canvas"><canvas style="top: 1px; left: 0px;" height="30" width="113"></canvas><span class="cufon-alt">Simple, </span></span><span style="width: 85px; height: 30px;" class="cufon cufon-canvas"><canvas style="top: 1px; left: 0px;" height="30" width="98"></canvas><span class="cufon-alt">Quick, </span></span><span style="width: 56px; height: 30px;" class="cufon cufon-canvas"><canvas style="top: 1px; left: 0px;" height="30" width="69"></canvas><span class="cufon-alt">and </span></span><span style="width: 75px; height: 30px;" class="cufon cufon-canvas"><canvas style="top: 1px; left: 0px;" height="30" width="89"></canvas><span class="cufon-alt">Small </span></span><span style="width: 88px; height: 30px;" class="cufon cufon-canvas"><canvas style="top: 1px; left: 0px;" height="30" width="101"></canvas><span class="cufon-alt">jQuery </span></span><span style="width: 73px; height: 30px;" class="cufon cufon-canvas"><canvas style="top: 1px; left: 0px;" height="30" width="87"></canvas><span class="cufon-alt">HTML </span></span><span style="width: 71px; height: 30px;" class="cufon cufon-canvas"><canvas style="top: 1px; left: 0px;" height="30" width="84"></canvas><span class="cufon-alt">Form </span></span><span style="width: 132px; height: 30px;" class="cufon cufon-canvas"><canvas style="top: 1px; left: 0px;" height="30" width="145"></canvas><span class="cufon-alt">Validation </span></span><span style="width: 99px; height: 30px;" class="cufon cufon-canvas"><canvas style="top: 1px; left: 0px;" height="30" width="106"></canvas><span class="cufon-alt">Solution</span></span></h1>
+
+			<div class="entry">
+				<p>This is a tutorial on how to write a live validation script for 
+HTML form inputs using jQuery. There are plenty of these out there 
+already, but in most cases I found that they could not be applied 
+quickly. 9 out of 10 websites that I develop need nothing more than a 
+simple validation to tell the user when an input was left empty or 
+filled in improperly. Once you’ve gotten the hang of this script, it 
+will only take you a couple of minutes to reapply it to each new website
+ that you’d like it on.</p>
+<p>All you’ll have to do is type in a list of what fields are required, 
+and then change the CSS style of a class to suite that particular 
+website, and that’s it!</p>
+<p><span id="more-768"></span></p>
+<div class="postfiles"><a class="download" href="http://jorenrapini.com/posts/validation/validation.zip"><strong>Download</strong> the source files.</a><a class="view" href="http://jorenrapini.com/posts/validation/"><strong>View</strong> the demo.</a></div>
+<p>First we’ll start with the HTML and CSS. The script will add a class 
+called “needsfilled” to any fields that don’t pass the validation, so 
+you’ll want to specify how you’d like it to look, and make it stand out 
+so that the user knows something went wrong! Be sure to have included 
+the latest version of jQuery and the script file itself in your header.</p>
+<div class="syntaxhighlighter " id="highlighter_338256"><div class="bar             "><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_338256_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_338256" menu="false" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><code class="number">01.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">#error {</code></span></span></div><div class="line alt2"><code class="number">02.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="keyword">color</code><code class="plain">:</code><code class="value">red</code><code class="plain">;</code></span></span></div><div class="line alt1"><code class="number">03.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="keyword">font-size</code><code class="plain">:</code><code class="value">10px</code><code class="plain">;</code></span></span></div><div class="line alt2"><code class="number">04.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="keyword">display</code><code class="plain">:</code><code class="value">none</code><code class="plain">;</code></span></span></div><div class="line alt1"><code class="number">05.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">}</code></span></span></div><div class="line alt2"><code class="number">06.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">.needsfilled {</code></span></span></div><div class="line alt1"><code class="number">07.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="keyword">background</code><code class="plain">:</code><code class="value">red</code><code class="plain">;</code></span></span></div><div class="line alt2"><code class="number">08.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="keyword">color</code><code class="plain">:</code><code class="value">white</code><code class="plain">;</code></span></span></div><div class="line alt1"><code class="number">09.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">}</code></span></span></div></div></div>
+<div class="syntaxhighlighter " id="highlighter_762715"><div class="bar   "><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_762715_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_762715" menu="false" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><code class="number">1.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">&lt;</code><code class="keyword">form</code> <code class="color1">action</code><code class="plain">=</code><code class="string">"mail.php"</code> <code class="color1">id</code><code class="plain">=</code><code class="string">"theform"</code> <code class="color1">name</code><code class="plain">=</code><code class="string">"theform"</code> <code class="color1">method</code><code class="plain">=</code><code class="string">"post"</code><code class="plain">&gt;</code></span></span></div><div class="line alt2"><code class="number">2.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">&lt;</code><code class="keyword">p</code><code class="plain">&gt;&lt;</code><code class="keyword">label</code> <code class="color1">for</code><code class="plain">=</code><code class="string">"name"</code><code class="plain">&gt;Name&lt;/</code><code class="keyword">label</code><code class="plain">&gt;&lt;</code><code class="keyword">br</code> <code class="plain">/&gt;&lt;</code><code class="keyword">input</code> <code class="color1">id</code><code class="plain">=</code><code class="string">"name"</code> <code class="color1">type</code><code class="plain">=</code><code class="string">"text"</code> <code class="color1">value</code><code class="plain">=</code><code class="string">""</code> <code class="color1">name</code><code class="plain">=</code><code class="string">"name"</code> <code class="plain">/&gt;&lt;/</code><code class="keyword">p</code><code class="plain">&gt;</code></span></span></div><div class="line alt1"><code class="number">3.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">&lt;</code><code class="keyword">p</code><code class="plain">&gt;&lt;</code><code class="keyword">label</code> <code class="color1">for</code><code class="plain">=</code><code class="string">"email"</code><code class="plain">&gt;E-mail&lt;/</code><code class="keyword">label</code><code class="plain">&gt;&lt;</code><code class="keyword">br</code> <code class="plain">/&gt;&lt;</code><code class="keyword">input</code> <code class="color1">id</code><code class="plain">=</code><code class="string">"email"</code> <code class="color1">type</code><code class="plain">=</code><code class="string">"text"</code> <code class="color1">value</code><code class="plain">=</code><code class="string">""</code> <code class="color1">name</code><code class="plain">=</code><code class="string">"email"</code> <code class="plain">/&gt;&lt;/</code><code class="keyword">p</code><code class="plain">&gt;</code></span></span></div><div class="line alt2"><code class="number">4.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">&lt;</code><code class="keyword">p</code><code class="plain">&gt;&lt;</code><code class="keyword">label</code> <code class="color1">for</code><code class="plain">=</code><code class="string">"message"</code><code class="plain">&gt;Message&lt;/</code><code class="keyword">label</code><code class="plain">&gt;&lt;</code><code class="keyword">br</code> <code class="plain">/&gt;&lt;</code><code class="keyword">textarea</code> <code class="color1">id</code><code class="plain">=</code><code class="string">"message"</code> <code class="color1">rows</code><code class="plain">=</code><code class="string">"7"</code> <code class="color1">cols</code><code class="plain">=</code><code class="string">"30"</code>&nbsp; <code class="color1">name</code><code class="plain">=</code><code class="string">"message"</code><code class="plain">&gt;&lt;/</code><code class="keyword">textarea</code><code class="plain">&gt;&lt;/</code><code class="keyword">p</code><code class="plain">&gt;</code></span></span></div><div class="line alt1"><code class="number">5.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">&lt;</code><code class="keyword">p</code><code class="plain">&gt;&lt;</code><code class="keyword">input</code> <code class="color1">class</code><code class="plain">=</code><code class="string">"submit"</code> <code class="color1">type</code><code class="plain">=</code><code class="string">"submit"</code> <code class="color1">name</code><code class="plain">=</code><code class="string">"submit"</code> <code class="color1">value</code><code class="plain">=</code><code class="string">"Submit Form"</code> <code class="plain">/&gt;&lt;/</code><code class="keyword">p</code><code class="plain">&gt;</code></span></span></div><div class="line alt2"><code class="number">6.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">&lt;</code><code class="keyword">p</code> <code class="color1">id</code><code class="plain">=</code><code class="string">"error"</code><code class="plain">&gt;There were errors on the form, please make sure all fields are fill out correctly.&lt;/</code><code class="keyword">p</code><code class="plain">&gt;</code></span></span></div><div class="line alt1"><code class="number">7.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">&lt;/</code><code class="keyword">form</code><code class="plain">&gt;</code></span></span></div></div></div>
+<p>Please take note of any ID’s used (theform, email, etc.) because 
+you’ll need those ID’s to stay consistent from within the javascript. 
+The HTML and CSS is pretty self-explanatory, so we’ll move onto the 
+javascript. All of this code will be placed within a 
+$(document).ready(function(){}); so that it’s all loaded when the DOM is
+ loaded.</p>
+<div class="syntaxhighlighter " id="highlighter_593003"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_593003_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_593003" menu="false" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><code class="number">1.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="comments">// Place ID's of all required fields here.</code></span></span></div><div class="line alt2"><code class="number">2.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">required = [</code><code class="string">"name"</code><code class="plain">, </code><code class="string">"email"</code><code class="plain">, </code><code class="string">"message"</code><code class="plain">];</code></span></span></div><div class="line alt1"><code class="number">3.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="comments">// If using an ID other than #email or #error then replace it here</code></span></span></div><div class="line alt2"><code class="number">4.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">email = $(</code><code class="string">"#email"</code><code class="plain">);</code></span></span></div><div class="line alt1"><code class="number">5.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">errornotice = $(</code><code class="string">"#error"</code><code class="plain">);</code></span></span></div><div class="line alt2"><code class="number">6.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="comments">// The text to show up within a field when it is incorrect</code></span></span></div><div class="line alt1"><code class="number">7.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">emptyerror = </code><code class="string">"Please fill out this field."</code><code class="plain">;</code></span></span></div><div class="line alt2"><code class="number">8.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">emailerror = </code><code class="string">"Please enter a valid e-mail."</code><code class="plain">;</code></span></span></div></div></div>
+<p>First we will setup our variables. Just follow the comments so that 
+you know what goes where. If you are using the same ID’s as this 
+tutorial, then all you really have to change is the list of fields that 
+are required, just follow the format used so that the array isn’t 
+broken.</p>
+<div class="syntaxhighlighter " id="highlighter_821065"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_821065_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_821065" menu="false" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><code class="number">01.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">$(</code><code class="string">"#theform"</code><code class="plain">).submit(</code><code class="keyword">function</code><code class="plain">(){</code></span></span></div><div class="line alt2"><code class="number">02.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="comments">//Validate required fields</code></span></span></div><div class="line alt1"><code class="number">03.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="keyword">for</code> <code class="plain">(i=0;i&lt;required.length;i++) {</code></span></span></div><div class="line alt2"><code class="number">04.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 56px !important;"><code class="keyword">var</code> <code class="plain">input = $(</code><code class="string">'#'</code><code class="plain">+required[i]);</code></span></span></div><div class="line alt1"><code class="number">05.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 56px !important;"><code class="keyword">if</code> <code class="plain">((input.val() == </code><code class="string">""</code><code class="plain">) || (input.val() == emptyerror)) {</code></span></span></div><div class="line alt2"><code class="number">06.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 84px !important;"><code class="plain">input.addClass(</code><code class="string">"needsfilled"</code><code class="plain">);</code></span></span></div><div class="line alt1"><code class="number">07.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 84px !important;"><code class="plain">input.val(emptyerror);</code></span></span></div><div class="line alt2"><code class="number">08.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 84px !important;"><code class="plain">errornotice.fadeIn(750);</code></span></span></div><div class="line alt1"><code class="number">09.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 56px !important;"><code class="plain">} </code><code class="keyword">else</code> <code class="plain">{</code></span></span></div><div class="line alt2"><code class="number">10.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 84px !important;"><code class="plain">input.removeClass(</code><code class="string">"needsfilled"</code><code class="plain">);</code></span></span></div><div class="line alt1"><code class="number">11.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 56px !important;"><code class="plain">}</code></span></span></div><div class="line alt2"><code class="number">12.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">}</code></span></span></div></div></div>
+<p>Now for an explanation on the code, taking it line by line. 
+$(”#theform”).submit(function() tells the page to execute the following 
+script whenever someone hits the submit button in the form with ID 
+‘theform’. Next, we create a ‘for’ loop that will run through as many 
+variables as you defined in the ‘required’ array earlier. The next ‘if’ 
+statement will check to see if the current input field is empty, or if 
+it is equal to the text that we set to appear if the field is empty. If 
+either of these cases are true, then it adds the class ‘needsfilled’ to 
+the empty input, replaces its value with the value of ‘emptyerror’, and 
+then fades in ‘errornotice’ alerting the user that something went wrong.
+ If the case is false, then we make sure to remove the class 
+‘needsfilled’ from the input because that is what we will use later on 
+to see if the form is safe to be submitted.</p>
+<div class="syntaxhighlighter " id="highlighter_838357"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_838357_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_838357" menu="false" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><code class="number">1.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="comments">// Validate the e-mail.</code></span></span></div><div class="line alt2"><code class="number">2.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="keyword">if</code> <code class="plain">(!/^S+@S+.S+$/.test(email.val())) {</code></span></span></div><div class="line alt1"><code class="number">3.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">email.addClass(</code><code class="string">"needsfilled"</code><code class="plain">);</code></span></span></div><div class="line alt2"><code class="number">4.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">email.val(emailerror);</code></span></span></div><div class="line alt1"><code class="number">5.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">}</code></span></span></div></div></div>
+<p>Just about every form is going to ask for an e-mail address, so I 
+felt it was necessary to include this bit. This is a regular expression 
+which is filtering the value of the ‘email’ input. It is making sure 
+that the e-mail adress follows the format of “email@domain.something”. 
+NetTUTS has many awesome explanations of regular expressions if you 
+would like more information on them. After this ‘if’ statement is where 
+you would also place any other validation that you’d like, such as 
+checking a URL string for proper formatting.</p>
+<div class="syntaxhighlighter " id="highlighter_597132"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_597132_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_597132" menu="false" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><code class="number">1.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="comments">//if any inputs on the page have the class 'needsfilled' the form will not submit</code></span></span></div><div class="line alt2"><code class="number">2.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="keyword">if</code> <code class="plain">($(</code><code class="string">":input"</code><code class="plain">).hasClass(</code><code class="string">"needsfilled"</code><code class="plain">)) {</code></span></span></div><div class="line alt1"><code class="number">3.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 56px !important;"><code class="keyword">return</code> <code class="keyword">false</code><code class="plain">;</code></span></span></div><div class="line alt2"><code class="number">4.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">} </code><code class="keyword">else</code> <code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">5.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 56px !important;"><code class="plain">errornotice.hide();</code></span></span></div><div class="line alt2"><code class="number">6.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 56px !important;"><code class="keyword">return</code> <code class="keyword">true</code><code class="plain">;</code></span></span></div><div class="line alt1"><code class="number">7.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">}</code></span></span></div><div class="line alt2"><code class="number">8.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">});</code></span></span></div></div></div>
+<p>With the above code, we are closing the 
+$(”#theform”).submit(function() at the end. The first if statement is 
+going to be checking to see if ANY inputs on the page have the class 
+‘needsfilled’. If it does, then ‘return false’ tells the form to not 
+submit.</p>
+<div class="syntaxhighlighter " id="highlighter_966177"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_966177_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_966177" menu="false" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><code class="number">1.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="comments">// Clears any fields in the form when the user clicks on them</code></span></span></div><div class="line alt2"><code class="number">2.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">$(</code><code class="string">":input"</code><code class="plain">).focus(</code><code class="keyword">function</code><code class="plain">(){</code></span></span></div><div class="line alt1"><code class="number">3.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 21px !important;"><code class="keyword">if</code> <code class="plain">($(</code><code class="keyword">this</code><code class="plain">).hasClass(</code><code class="string">"needsfilled"</code><code class="plain">) ) {</code></span></span></div><div class="line alt2"><code class="number">4.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 56px !important;"><code class="plain">$(</code><code class="keyword">this</code><code class="plain">).val(</code><code class="string">""</code><code class="plain">);</code></span></span></div><div class="line alt1"><code class="number">5.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 56px !important;"><code class="plain">$(</code><code class="keyword">this</code><code class="plain">).removeClass(</code><code class="string">"needsfilled"</code><code class="plain">);</code></span></span></div><div class="line alt2"><code class="number">6.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 21px !important;"><code class="plain">}</code></span></span></div><div class="line alt1"><code class="number">7.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">});</code></span></span></div></div></div>
+<p>This block is just a little bit of user experience improvement. If a 
+user clicks on an input field that did not pass the validation, then the
+ value will clear so that the user can immediately start typing without 
+having to delete our message. <span style="color:red;">Updated this portion on 10-27-09 a bit, thanks Tom for the suggestion.</span></p>
+<p>And there you have it, quick and simple live form validation that you
+ can easily add within a couple minutes, and hopefully you learned 
+something while you were at it!</p>			</div>
+                        <div id="extras">
+                <p class="smalls">Tags: <a href="http://jorenrapini.com/blog/tag/form" rel="tag">Form</a>, <a href="http://jorenrapini.com/blog/tag/html" rel="tag">HTML</a>, <a href="http://jorenrapini.com/blog/tag/javascript" rel="tag">Javascript</a>, <a href="http://jorenrapini.com/blog/tag/jquery" rel="tag">jQuery</a>, <a href="http://jorenrapini.com/blog/tag/validation" rel="tag">Validation</a></p>                <p class="smalls">Posted under <a href="http://jorenrapini.com/blog/category/javascript" title="View all posts in Javascript" rel="category tag">Javascript</a>,  <a href="http://jorenrapini.com/blog/category/tutorials" title="View all posts in Tutorials" rel="category tag">Tutorials</a>,  <a href="http://jorenrapini.com/blog/category/web-development" title="View all posts in Web Development" rel="category tag">Web Development</a> on <strong>October 5th, 2009</strong>  by <strong>Joren Rapini</strong>.</p><br>
+
+                <h3>Now what?</h3>
+                <p class="nowwhat">
+                        <a href="http://feeds.feedburner.com/Joren-Rapini-Web-Design-Development-Blog" class="rss">Subscribe to the RSS Feed</a>
+
+                                                     <span>•</span> <a href="#respond">Leave a comment</a>
+        
+                                                 <span>•</span> Share the wealth:
+                </p>
+                <ul id="socialmedia">
+                    <li><a href="http://delicious.com/post?url=http%3A%2F%2Fjorenrapini.com%2Fblog%2Fjavascript%2Fthe-simple-quick-and-small-jquery-html-form-validation-solution&amp;title=The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution" title="Del.icio.us" class="link1">Del.icio.us</a></li>
+                    <li><a href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fjorenrapini.com%2Fblog%2Fjavascript%2Fthe-simple-quick-and-small-jquery-html-form-validation-solution&amp;title=The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution" title="Stumble Upon" class="link2">Stumble Upon</a></li>
+                    <li><a href="http://twitter.com/home?status=Currently%20reading%20http%3A%2F%2Fjorenrapini.com%2Fblog%2Fjavascript%2Fthe-simple-quick-and-small-jquery-html-form-validation-solution" title="Twitter" class="link3">Twitter</a></li>
+                    <li><a href="http://www.facebook.com/share.php?u=http%3A%2F%2Fjorenrapini.com%2Fblog%2Fjavascript%2Fthe-simple-quick-and-small-jquery-html-form-validation-solution" title="Facebook" class="link4">Facebook</a></li>
+                    <li><a href="http://www.designfloat.com/submit.php?url=http%3A%2F%2Fjorenrapini.com%2Fblog%2Fjavascript%2Fthe-simple-quick-and-small-jquery-html-form-validation-solution&amp;title=The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution" title="Design Float" class="link5">Design Float</a></li>
+                    <li><a href="http://designbump.com/node/add/drigg?url=http%3A%2F%2Fjorenrapini.com%2Fblog%2Fjavascript%2Fthe-simple-quick-and-small-jquery-html-form-validation-solution&amp;title=The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution" title="Design Bump" class="link6">Design Bump</a></li>
+                    <li><a href="http://www.dzone.com/links/add.html?&amp;url=http%3A%2F%2Fjorenrapini.com%2Fblog%2Fjavascript%2Fthe-simple-quick-and-small-jquery-html-form-validation-solution&amp;title=The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution" title="DZone" class="link7">DZone</a></li>
+                    <li><a href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fjorenrapini.com%2Fblog%2Fjavascript%2Fthe-simple-quick-and-small-jquery-html-form-validation-solution&amp;title=The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution&amp;bodytext=This%20is%20a%20tutorial%20on%20how%20to%20write%20a%20live%20validation%20script%20for%20HTML%20form%20inputs%20using%20jQuery.%20There%20are%20plenty%20of%20these%20out%20there%20already%2C%20but%20in%20most%20cases%20I%20found%20that%20they%20could%20not%20be%20applied%20quickly.%209%20out%20of%2010%20websites%20that%20I%20develop%20need%20not" title="Digg" class="link8">Digg</a></li>
+                    <li><a href="http://reddit.com/submit?url=http%3A%2F%2Fjorenrapini.com%2Fblog%2Fjavascript%2Fthe-simple-quick-and-small-jquery-html-form-validation-solution&amp;title=The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution" title="Reddit" class="link9">Reddit</a></li>
+                    <li><a href="mailto:?subject=Check%20out%20this%20article%20on%20Joren%20Rapini%27s%20Blog&amp;body=The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution" title="E-mail" class="link10">E-mail</a></li>
+                </ul>    
+                <br class="clear">
+             </div>   
+			
+             <div id="related"><h3>Related Articles</h3><ul class="related_post"><li><a href="http://jorenrapini.com/blog/javascript/useful-javascript-jquery-and-ajax-tutorials-and-resources-massive-link-collection-part-1" title="Useful Javascript, jQuery, and AJAX Tutorials and Resources -  MLC#1">Useful Javascript, jQuery, and AJAX Tutorials and Resources -  MLC#1</a></li><li><a href="http://jorenrapini.com/blog/css/transify-a-jquery-plugin-to-easily-apply-transparency-opacity-to-an-elements-background" title="Transify - a jQuery plugin to easily apply transparency / opacity to an element’s background">Transify - a jQuery plugin to easily apply transparency / opacity to an element’s background</a></li><li><a href="http://jorenrapini.com/blog/css/jquery-validation-contact-form-with-modal-slide-in-transition" title="jQuery AJAX Validation Contact Form with Modal + Slide-in Transition">jQuery AJAX Validation Contact Form with Modal + Slide-in Transition</a></li><li><a href="http://jorenrapini.com/blog/css/double-body-background-css-trick" title="Double Body Background CSS Trick">Double Body Background CSS Trick</a></li></ul></div>
+		</div>
+	
+<!-- You can start editing here. -->
+
+	<h6 id="comments"><span style="width: 48px; height: 28px;" class="cufon cufon-canvas"><canvas style="top: 1px; left: 0px;" height="28" width="60"></canvas><span class="cufon-alt">103 </span></span><span style="width: 122px; height: 28px;" class="cufon cufon-canvas"><canvas style="top: 1px; left: 0px;" height="28" width="131"></canvas><span class="cufon-alt">Comments</span></span></h6>
+
+	<div class="navigation">
+		<div class="alignleft"><a href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution/comment-page-1#comments">« Older Comments</a></div>
+		<div class="alignright"></div>
+            <br class="clear">
+	</div>
+
+	<ol class="commentlist">
+    		
+		
+            <li class="comment even thread-even depth-1 parent" id="comment-3891">
+                        <div id="div-comment-3891">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/68b6f55005926a2ac5d18e4105b45528.jpg" class="avatar avatar-80 photo" height="80" width="80">                <div>Jim Bouschor</div>
+            </div>
+                        
+                <p>I love the simplicity of the code and it works great.  But i have a question:</p>
+<p>For required fields, what about disallowing leading whitespaces?  For
+ instance, i have a required Name field.  If the user just puts a few 
+spaces in, then the field validates.  It should really require letters 
+only or at the very least not allow a leading space in the field.</p>
+<p>Thx man.  Great work!</p>
+            
+               
+                <div class="comment-meta"><span class="date">March 16, 2012 at 10:29 am</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=3891#respond" onclick='return addComment.moveForm("div-comment-3891", "3891", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            <ul class="children">
+	
+		
+            <li class="comment odd alt depth-2 parent" id="comment-3899">
+                        <div id="div-comment-3899">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/f260d9cea55e682e92f5c389cea50f73.png" class="avatar avatar-30 photo" height="30" width="30">                <div><a href="http://www.robinjohn.info/" rel="external nofollow" class="url">Robin John</a></div>
+            </div>
+                        
+                <p>This would help [adding .replace(/ /g,'') for removing white space]</p>
+<p> if ((input.val().replace(/ /g,”) == “”) || (input.val() == emptyerror))</p>
+            
+               
+                <div class="comment-meta"><span class="date">March 27, 2012 at 10:39 am</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=3899#respond" onclick='return addComment.moveForm("div-comment-3899", "3899", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            <ul class="children">
+	
+		
+            <li class="comment even depth-3" id="comment-3901">
+                        <div id="div-comment-3901">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/ae32edbd3f9c83886b6a11219f2159aa.png" class="avatar avatar-30 photo" height="30" width="30">                <div>Greenwood Man</div>
+            </div>
+                        
+                <p>Hi </p>
+<p>The validation system works fine but the following syntax for removing white space causes error in validation.js</p>
+<p>//Validate required fields</p>
+<p>	for (i=0;i&lt;required.length;i++) {<br>
+			var input = $(’#'+required[i]);<br>
+if ((input.val().replace(/ /g,”) == “”) || (input.val() == emptyerror))<br>
+				input.addClass(”required”);<br>
+				input.val(emptyerror);<br>
+				errornotice.fadeIn(750);<br>
+			} else {<br>
+				input.removeClass(”required”);<br>
+			}<br>
+		}</p>
+<p>// Validate the e-mail.</p>
+<p>What could be the reason? How to overcome it?</p>
+<p>Thanks in advance.</p>
+            
+               
+                <div class="comment-meta"><span class="date">March 29, 2012 at 7:55 am</span> </div>
+        
+                                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment odd alt depth-3" id="comment-4149">
+                        <div id="div-comment-4149">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/9272ee5994f9d486b25e9f4e7c4b6938.png" class="avatar avatar-30 photo" height="30" width="30">                <div>pierre</div>
+            </div>
+                        
+                <p>Hi,</p>
+<p>correct is</p>
+<p>if ((input.val().replace(/ /g,”") == “”) || (input.val() == emptyerror))</p>
+            
+               
+                <div class="comment-meta"><span class="date">September 8, 2012 at 10:04 am</span> </div>
+        
+                                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+</ul>
+</li>
+</ul>
+</li>
+	
+		
+            <li class="comment even thread-odd thread-alt depth-1" id="comment-3902">
+                        <div id="div-comment-3902">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/ae32edbd3f9c83886b6a11219f2159aa_002.png" class="avatar avatar-80 photo" height="80" width="80">                <div>Greenwood Man</div>
+            </div>
+                        
+                <p>The validation system works fine but the following 
+syntax if ((input.val().replace(/ /g,”) == “”) || (input.val() == 
+emptyerror)) for removing white space causes error in validation.js</p>
+<p>//Validate required fields</p>
+<p>for (i=0;i&lt;required.length;i++) {<br>
+var input = $(’#’+required[i]);<br>
+if ((input.val().replace(/ /g,”) == “”) || (input.val() == emptyerror)) {<br>
+input.addClass(”required”);<br>
+input.val(emptyerror);<br>
+errornotice.fadeIn(750);<br>
+} else {<br>
+input.removeClass(”required”);<br>
+}<br>
+}</p>
+<p>// Validate the e-mail.</p>
+<p>What could be the reason? How to overcome it?</p>
+<p>Thanks in advance.</p>
+            
+               
+                <div class="comment-meta"><span class="date">March 29, 2012 at 7:58 am</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=3902#respond" onclick='return addComment.moveForm("div-comment-3902", "3902", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment odd alt thread-even depth-1" id="comment-3917">
+                        <div id="div-comment-3917">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/c5099aaca93f0c609cb9162eeb152c7f.png" class="avatar avatar-80 photo" height="80" width="80">                <div>Sean</div>
+            </div>
+                        
+                <p>Hi Joren,<br>
+Great tutorial, thank you for sharing this code. It’s elegance is in 
+it’s simplicity. I noticed that you have some updated code for AJAX, but
+ I was wondering: for this original version of the code, in the else 
+part of the function where it hides the errormessage and sets the submit
+ button to (return true;), is it possible to do two other things - I am 
+trying to a) hide the container div that the form is in and b) show a 
+hidden div.</p>
+<p>This is a simple enough task to achieve on it’s own and I have a 
+version working but I am NOT able to achieve this in this validation 
+code. I tried adding something like this:</p>
+<p>                errornotice.hide();<br>
+	        return true;<br>
+		$(”#placeHolder #myForm”).hide();<br>
+		$(”#placeHolder #stuff”).show();</p>
+<p>But it doesn’t work; I am new enough at jQuery that I don’t properly 
+understand the syntax, or the proper way to do this  - do I need to 
+wrote a new function and can it be called in this fashion?</p>
+<p>Thans to you (or any commenter) that can help with this.</p>
+            
+               
+                <div class="comment-meta"><span class="date">April 23, 2012 at 2:07 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=3917#respond" onclick='return addComment.moveForm("div-comment-3917", "3917", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment even thread-odd thread-alt depth-1" id="comment-3918">
+                        <div id="div-comment-3918">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/91dcba2b1dfefadb9c62f757d100cfef.png" class="avatar avatar-80 photo" height="80" width="80">                <div>Brandon</div>
+            </div>
+                        
+                <p>One big problem: it removes the invalid field value, 
+so if (for instance) you just mistyped your long e-mail address 
+’some.really.long.username@somecompanywithalongdomainname.com’ with a 
+comma instead of a dot before ‘com’, you’ll have to retype the whole 
+thing all over again.  Not very user-friendly.  I like that the message 
+is displayed in the field, but this is a very unfortunate side effect.  
+Much better if you stuck the user-entered value in a variable and then 
+put it back when you’re done displaying the message (e.g. when they put 
+their focus in the field).</p>
+            
+               
+                <div class="comment-meta"><span class="date">April 25, 2012 at 8:15 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=3918#respond" onclick='return addComment.moveForm("div-comment-3918", "3918", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment odd alt thread-even depth-1" id="comment-3921">
+                        <div id="div-comment-3921">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/2f93bdbe905c6c6c7abb01e96c44209a.png" class="avatar avatar-80 photo" height="80" width="80">                <div>FidbecK</div>
+            </div>
+                        
+                <p>Hi Joren I’ve sent you an email with a question regarding this tut.<br>
+If you could please answer I’d be much appreciated, otherwise I can post my doubt here<br>
+Thanks</p>
+            
+               
+                <div class="comment-meta"><span class="date">May 3, 2012 at 11:08 am</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=3921#respond" onclick='return addComment.moveForm("div-comment-3921", "3921", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment even thread-odd thread-alt depth-1" id="comment-3923">
+                        <div id="div-comment-3923">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/233bcf7098ec33f21d14fbd3e7ae3c3b.jpg" class="avatar avatar-80 photo" height="80" width="80">                <div><a href="http://www.xakbox.com/" rel="external nofollow" class="url">xakbox</a></div>
+            </div>
+                        
+                <p>this was the most simplest validation script i ever used.. thanks for such a amazing script <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+            
+               
+                <div class="comment-meta"><span class="date">May 4, 2012 at 5:41 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=3923#respond" onclick='return addComment.moveForm("div-comment-3923", "3923", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment odd alt thread-even depth-1" id="comment-3944">
+                        <div id="div-comment-3944">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/915b8fe11439fed4921ed7456ac63b0f.png" class="avatar avatar-80 photo" height="80" width="80">                <div>Megan</div>
+            </div>
+                        
+                <p>Great tutorial. Love the simplicity. Now if only 
+there was a simple script for adding a background color to a required 
+radio button it would be perfect. Anyone else come across this problem?</p>
+            
+               
+                <div class="comment-meta"><span class="date">June 20, 2012 at 3:10 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=3944#respond" onclick='return addComment.moveForm("div-comment-3944", "3944", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment even thread-odd thread-alt depth-1" id="comment-3951">
+                        <div id="div-comment-3951">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/0f59c89ff224edd74564c4b0ce0d1659.jpg" class="avatar avatar-80 photo" height="80" width="80">                <div>Rolypoly</div>
+            </div>
+                        
+                <p>This seems simple enough, but the script calls for a 
+mail.php. Where/how do we get the code of THAT page? Or am I missing 
+something?</p>
+            
+               
+                <div class="comment-meta"><span class="date">July 6, 2012 at 8:03 am</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=3951#respond" onclick='return addComment.moveForm("div-comment-3951", "3951", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment odd alt thread-even depth-1 parent" id="comment-3956">
+                        <div id="div-comment-3956">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/167b7f4b5e3b447e738ec897661f5c80.png" class="avatar avatar-80 photo" height="80" width="80">                <div>Geoff</div>
+            </div>
+                        
+                <p>This is a nice tutorial, but the e-mail validation is
+ incorrect because it rejects perfectly valid e-mail addresses.  Repeat 
+after me: everything to the left of the “@” sign is called the 
+local-part.  The local-part can only be interpreted by the receiving 
+site.  Any attempt to “validate” it will inevitably result in errors.  
+Read the RFCs on e-mail for more information.</p>
+<p>(In particular, the regex rejects addresses with plus signs in them, which are valid at lots of sites.)</p>
+            
+               
+                <div class="comment-meta"><span class="date">July 21, 2012 at 9:21 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=3956#respond" onclick='return addComment.moveForm("div-comment-3956", "3956", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            <ul class="children">
+	
+		
+            <li class="comment byuser comment-author-jorenrap bypostauthor even depth-2" id="comment-3957">
+                        <div id="div-comment-3957">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bdbe6ac09a386c3a026af4593242c50c.jpg" class="avatar avatar-30 photo" height="30" width="30">                <div><a href="http://jorenrapini.com/" rel="external nofollow" class="url">Joren Rapini</a></div>
+            </div>
+                        
+                <p>You are correct, that Regex bit does need updated (this is an old post). Any chance you know of a good one?</p>
+            
+               
+                <div class="comment-meta"><span class="date">July 21, 2012 at 9:36 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=3957#respond" onclick='return addComment.moveForm("div-comment-3957", "3957", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment byuser comment-author-jorenrap bypostauthor odd alt depth-2" id="comment-3959">
+                        <div id="div-comment-3959">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bdbe6ac09a386c3a026af4593242c50c.jpg" class="avatar avatar-30 photo" height="30" width="30">                <div><a href="http://jorenrapini.com/" rel="external nofollow" class="url">Joren Rapini</a></div>
+            </div>
+                        
+                <p>Ok, I updated it to just validate that there’s an @ 
+symbol, something before and something after, with a . in there. That 
+should let everything through.</p>
+            
+               
+                <div class="comment-meta"><span class="date">August 3, 2012 at 10:43 am</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=3959#respond" onclick='return addComment.moveForm("div-comment-3959", "3959", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+</ul>
+</li>
+	
+		
+            <li class="comment even thread-odd thread-alt depth-1" id="comment-3993">
+                        <div id="div-comment-3993">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/e45264dd90872db8a9e78c4dfd394ec9.png" class="avatar avatar-80 photo" height="80" width="80">                <div>Jessica</div>
+            </div>
+                        
+                <p>This works in a .htm file, but it doesn’t in a .aspx 
+file. Have you ran into that issue before? There is no change in the 
+code except form ID, and I made sure to change that in the validation.js
+ file. Any help is much appreciated.</p>
+            
+               
+                <div class="comment-meta"><span class="date">August 8, 2012 at 10:11 am</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=3993#respond" onclick='return addComment.moveForm("div-comment-3993", "3993", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment odd alt thread-even depth-1" id="comment-4014">
+                        <div id="div-comment-4014">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/98109ec7e0c47227c799cc620f232031.png" class="avatar avatar-80 photo" height="80" width="80">                <div><a href="http://www.linenlogon.co.za/" rel="external nofollow" class="url">Linen</a></div>
+            </div>
+                        
+                <p>This is an amazing yet simplistic form validation. Simplicity is key.</p>
+            
+               
+                <div class="comment-meta"><span class="date">August 9, 2012 at 4:05 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=4014#respond" onclick='return addComment.moveForm("div-comment-4014", "4014", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment even thread-odd thread-alt depth-1" id="comment-4059">
+                        <div id="div-comment-4059">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/42f9d5bd56a621d17541516a2ed91aeb.png" class="avatar avatar-80 photo" height="80" width="80">                <div>Edward Witt</div>
+            </div>
+                        
+                <p>Great script. It worked on a form I was working on. 
+However, for some reason I can’t get it to work with prettyPhoto inline 
+form pop up.  prettyPhoto is a jQuery lightbox clone. Ever run into that
+ issue?</p>
+            
+               
+                <div class="comment-meta"><span class="date">August 18, 2012 at 6:13 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=4059#respond" onclick='return addComment.moveForm("div-comment-4059", "4059", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment odd alt thread-even depth-1" id="comment-4071">
+                        <div id="div-comment-4071">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/9d4ab4b566f6340633a25ba1fe6ac92a.png" class="avatar avatar-80 photo" height="80" width="80">                <div><a href="http://www.jlmadison.com/" rel="external nofollow" class="url">Jasmyn</a></div>
+            </div>
+                        
+                <p>This is great, simple fix. Just what I needed! Thanks so much!</p>
+            
+               
+                <div class="comment-meta"><span class="date">August 21, 2012 at 2:54 am</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=4071#respond" onclick='return addComment.moveForm("div-comment-4071", "4071", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment even thread-odd thread-alt depth-1 parent" id="comment-4151">
+                        <div id="div-comment-4151">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/a2bea1a3d5fe7daf5a70e93567eeb3eb.png" class="avatar avatar-80 photo" height="80" width="80">                <div>Brendon</div>
+            </div>
+                        
+                <p>Very simple and easy to use. Will this check if a selection is made from a select list??? If so how do i set up the select list?</p>
+            
+               
+                <div class="comment-meta"><span class="date">September 11, 2012 at 12:03 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=4151#respond" onclick='return addComment.moveForm("div-comment-4151", "4151", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            <ul class="children">
+	
+		
+            <li class="comment byuser comment-author-jorenrap bypostauthor odd alt depth-2 parent" id="comment-4152">
+                        <div id="div-comment-4152">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bdbe6ac09a386c3a026af4593242c50c.jpg" class="avatar avatar-30 photo" height="30" width="30">                <div><a href="http://jorenrapini.com/" rel="external nofollow" class="url">Joren Rapini</a></div>
+            </div>
+                        
+                <p>Sadly I didn’t take into account selects when I wrote
+ this. I think you can add a check to the javascript file using 
+something like jQuery’s .is(’:checked’) to see if the user has made a 
+choice.</p>
+            
+               
+                <div class="comment-meta"><span class="date">September 11, 2012 at 1:16 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=4152#respond" onclick='return addComment.moveForm("div-comment-4152", "4152", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            <ul class="children">
+	
+		
+            <li class="comment even depth-3" id="comment-4153">
+                        <div id="div-comment-4153">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/a2bea1a3d5fe7daf5a70e93567eeb3eb_002.png" class="avatar avatar-30 photo" height="30" width="30">                <div>Brendon</div>
+            </div>
+                        
+                <p>Thanks. I will give it a go but I am still very 
+noobish at jquery. Any more help if you ever have time would be greatly 
+appreciated</p>
+            
+               
+                <div class="comment-meta"><span class="date">September 12, 2012 at 6:35 pm</span> </div>
+        
+                                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+</ul>
+</li>
+</ul>
+</li>
+	
+		
+            <li class="comment odd alt thread-even depth-1" id="comment-4155">
+                        <div id="div-comment-4155">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/1b60f67fc2949cc842c0a0d6622614ae.png" class="avatar avatar-80 photo" height="80" width="80">                <div>sams</div>
+            </div>
+                        
+                <p>check this site the best validator i ever saw</p>
+<p><a href="http://learnwebscripts.com/flexible-jquery-form-validator" rel="nofollow">http://learnwebscripts.com/flexible-jquery-form-validator</a></p>
+            
+               
+                <div class="comment-meta"><span class="date">September 21, 2012 at 9:14 am</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=4155#respond" onclick='return addComment.moveForm("div-comment-4155", "4155", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment even thread-odd thread-alt depth-1" id="comment-4166">
+                        <div id="div-comment-4166">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/e1906e6746d9aaf7be55578eb5896e58.jpg" class="avatar avatar-80 photo" height="80" width="80">                <div>Jay</div>
+            </div>
+                        
+                <p>How would I go about validating whether or not a radio button or dropdown box option has been selected?</p>
+            
+               
+                <div class="comment-meta"><span class="date">November 2, 2012 at 5:28 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=4166#respond" onclick='return addComment.moveForm("div-comment-4166", "4166", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment odd alt thread-even depth-1" id="comment-4184">
+                        <div id="div-comment-4184">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/b228e70a4a21bc078877b01849f3f60c.png" class="avatar avatar-80 photo" height="80" width="80">                <div>Gfunk</div>
+            </div>
+                        
+                <p>Hi Guys</p>
+<p>I really need some urgent help. First of all nice little validion. 
+Just one thing. Im trying to validate radio buttons. Its for gender, 
+male or female. What jquery code can i add to the current code. Pls help</p>
+            
+               
+                <div class="comment-meta"><span class="date">December 13, 2012 at 8:33 am</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=4184#respond" onclick='return addComment.moveForm("div-comment-4184", "4184", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment even thread-odd thread-alt depth-1 parent" id="comment-4186">
+                        <div id="div-comment-4186">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/cd8732da05502788afe5f446849bd19a.png" class="avatar avatar-80 photo" height="80" width="80">                <div>Chris Baker</div>
+            </div>
+                        
+                <p>Thanks! Question: I am relatively new to jQuery, but 
+isn’t there a way to have jQuery search for all the elements that have 
+the “needsFilled” class applied, rather than having to manually list 
+them in the code (”required = ["name", "email", "message"];”)?</p>
+            
+               
+                <div class="comment-meta"><span class="date">January 8, 2013 at 12:25 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=4186#respond" onclick='return addComment.moveForm("div-comment-4186", "4186", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            <ul class="children">
+	
+		
+            <li class="comment byuser comment-author-jorenrap bypostauthor odd alt depth-2" id="comment-4187">
+                        <div id="div-comment-4187">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bdbe6ac09a386c3a026af4593242c50c.jpg" class="avatar avatar-30 photo" height="30" width="30">                <div><a href="http://jorenrapini.com/" rel="external nofollow" class="url">Joren Rapini</a></div>
+            </div>
+                        
+                <p>You are correct sir. This post is pretty ancient, I 
+have yet to get around to uploading it / directing people to a much more
+ optimized version of this script.</p>
+            
+               
+                <div class="comment-meta"><span class="date">January 8, 2013 at 12:45 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=4187#respond" onclick='return addComment.moveForm("div-comment-4187", "4187", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+</ul>
+</li>
+	
+		
+            <li class="comment even thread-even depth-1" id="comment-4233">
+                        <div id="div-comment-4233">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/c8bab6036d24039a7c08242485dcea94.png" class="avatar avatar-80 photo" height="80" width="80">                <div><a href="http://www.milagro.in/" rel="external nofollow" class="url">Surinder</a></div>
+            </div>
+                        
+                <p>hi,</p>
+<p>How can we validate select field in this file….?<br>
+can you please send me the code….!!!</p>
+<p>Thanks</p>
+            
+               
+                <div class="comment-meta"><span class="date">March 2, 2013 at 2:25 am</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=4233#respond" onclick='return addComment.moveForm("div-comment-4233", "4233", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4260">
+                        <div id="div-comment-4260">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/42f3ad7cb1dee1bf002f4fd6475f14da.jpg" class="avatar avatar-80 photo" height="80" width="80">                <div>Mal</div>
+            </div>
+                        
+                <p>Thanks! Now how can I easily Google+ this? <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+<p>(Love the little street scape above the footer… very cute <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+            
+               
+                <div class="comment-meta"><span class="date">April 1, 2013 at 11:50 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=4260#respond" onclick='return addComment.moveForm("div-comment-4260", "4260", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment even thread-even depth-1" id="comment-4264">
+                        <div id="div-comment-4264">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/67890742a9e9820fb2bcd718b7696e18.png" class="avatar avatar-80 photo" height="80" width="80">                <div><a href="http://bid-ninja.com/" rel="external nofollow" class="url">win quibids auctions</a></div>
+            </div>
+                        
+                <p>This is really a very beneficial read for me, Need to
+ admit you might be a single in the very best bloggers I ever saw.Thanks
+ for posting this informative article.</p>
+            
+               
+                <div class="comment-meta"><span class="date">April 9, 2013 at 10:41 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=4264#respond" onclick='return addComment.moveForm("div-comment-4264", "4264", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+	
+		
+            <li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4281">
+                        <div id="div-comment-4281">              
+
+                        <div class="comment-block">
+            <div class="comment-author vcard">
+           		                <img alt="" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/a0482452c3ab4972a853292e9f9d6dd9.png" class="avatar avatar-80 photo" height="80" width="80">                <div>Mat</div>
+            </div>
+                        
+                <p>Thanks so much for sharing this. It’s really helpful</p>
+            
+               
+                <div class="comment-meta"><span class="date">April 30, 2013 at 12:19 pm</span> </div>
+        
+                <a rel="nofollow" class="comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution?replytocom=4281#respond" onclick='return addComment.moveForm("div-comment-4281", "4281", "respond", "768")'>Reply</a>                
+                            </div>    
+            <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/bubbles.png" alt="" class="bubbles" height="41" width="45">
+            <br class="clear">
+            </div>
+            </li>
+    		</ol>
+
+	<div class="navigation">
+		<div class="alignleft"><a href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution/comment-page-1#comments">Older Comments</a></div>
+		<div class="alignright"></div>
+            <br class="clear">
+	</div>
+ 
+
+
+<div id="respond">
+
+<h3>Leave a Reply</h3>
+
+
+
+<form action="http://jorenrapini.com/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input name="author" id="author" size="22" tabindex="1" type="text">
+<label for="author">Name <span>(required)</span></label></p>
+
+<p><input name="email" id="email" size="22" tabindex="2" type="text">
+<label for="email">E-mail <span>(will not be published) (required)</span></label></p>
+
+<p><input name="url" id="url" size="22" tabindex="3" type="text">
+<label for="url">Website</label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+
+<textarea name="comment" id="comment" cols="" rows="10" tabindex="4"></textarea>
+
+
+<p><a rel="nofollow" id="cancel-comment-reply-link" href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution" style="display:none;">Cancel Reply</a><input name="submit" id="submit" tabindex="5" value="Submit Comment" class="button" onfocus="this.blur()" type="submit">
+<input name="comment_post_ID" value="768" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+<br class="clear">
+</p>
+
+</form>
+
+</div>
+
+
+	
+	</div>
+	<div id="sidebar">
+						<div class="item" style="height:50px;">
+				<form method="get" id="searchform" action="http://jorenrapini.com/">
+<input onfocus="this.value=''" value="Click here to search" name="s" id="s" type="text"><input id="searchsubmit" value="" type="submit"> 
+</form>
+                <a href="http://feeds.feedburner.com/Joren-Rapini-Web-Design-Development-Blog" class="rss">Subscribe</a>
+			</div>
+            
+            
+			
+			<div class="item links">
+				<div class="column"><h5>Categories</h5><ul>	<li class="cat-item cat-item-3"><a href="http://jorenrapini.com/blog/category/applications" title="View all posts filed under Applications">Applications</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://jorenrapini.com/blog/category/contests" title="View all posts filed under Contests">Contests</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://jorenrapini.com/blog/category/css" title="View all posts filed under CSS">CSS</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://jorenrapini.com/blog/category/flash" title="View all posts filed under Flash">Flash</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://jorenrapini.com/blog/category/general" title="View all posts filed under General">General</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://jorenrapini.com/blog/category/graphic-design" title="View all posts filed under Graphic Design">Graphic Design</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://jorenrapini.com/blog/category/javascript" title="View all posts filed under Javascript">Javascript</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://jorenrapini.com/blog/category/music" title="View all posts filed under Music">Music</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="http://jorenrapini.com/blog/category/php" title="View all posts filed under PHP">PHP</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://jorenrapini.com/blog/category/resources" title="View all posts filed under Resources">Resources</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="http://jorenrapini.com/blog/category/tutorials" title="View all posts filed under Tutorials">Tutorials</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="http://jorenrapini.com/blog/category/web-design" title="View all posts filed under Web Design">Web Design</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="http://jorenrapini.com/blog/category/web-development" title="View all posts filed under Web Development">Web Development</a>
+</li>
+</ul></div>            
+                <div class="column right">
+                    <h5>Archives</h5>
+                    <ul>
+                    	<li><a href="http://jorenrapini.com/blog/2010/10" title="October 2010">October 2010</a></li>
+	<li><a href="http://jorenrapini.com/blog/2009/11" title="November 2009">November 2009</a></li>
+	<li><a href="http://jorenrapini.com/blog/2009/10" title="October 2009">October 2009</a></li>
+	<li><a href="http://jorenrapini.com/blog/2009/09" title="September 2009">September 2009</a></li>
+	<li><a href="http://jorenrapini.com/blog/2009/08" title="August 2009">August 2009</a></li>
+	<li><a href="http://jorenrapini.com/blog/2009/06" title="June 2009">June 2009</a></li>
+	<li><a href="http://jorenrapini.com/blog/2009/05" title="May 2009">May 2009</a></li>
+	<li><a href="http://jorenrapini.com/blog/2009/04" title="April 2009">April 2009</a></li>
+	<li><a href="http://jorenrapini.com/blog/2009/03" title="March 2009">March 2009</a></li>
+	<li><a href="http://jorenrapini.com/blog/2009/02" title="February 2009">February 2009</a></li>
+	<li><a href="http://jorenrapini.com/blog/2009/01" title="January 2009">January 2009</a></li>
+	<li><a href="http://jorenrapini.com/blog/2008/12" title="December 2008">December 2008</a></li>
+	<li><a href="http://jorenrapini.com/blog/2008/11" title="November 2008">November 2008</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+             </div>   
+            <div class="item">
+				<script type="text/javascript"><!--
+                google_ad_client = "pub-6205197273387879";
+                /* 300x250, created 7/10/09 */
+                google_ad_slot = "2095059857";
+                google_ad_width = 300;
+                google_ad_height = 250;
+                //-->
+                </script>
+                <script type="text/javascript" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/show_ads.js"></script><ins style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px"><ins id="aswift_0_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" frameborder="0" height="250" width="300" scrolling="no"></iframe></ins></ins>
+            </div>
+            
+            <div class="item">
+            	<a href="#nav" id="advertise" class="contact">Click Here to Advertise with Joren Rapini.com</a>
+            </div>
+            
+                            <div class="sidebar_divider"></div>
+                <div class="item">
+                   <h5>Recent Comments</h5>
+                   <ul class="recent_comments">	<li><a href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution#comment-4281" title="The Simple, Quick, and Small jQuery HTML Form Validation Solution, October 5, 2009">Mat</a>: Thanks so much for sharing this. It’s really helpful</li>
+	<li><a href="http://jorenrapini.com/blog/css/jquery-validation-contact-form-with-modal-slide-in-transition#comment-4280" title="jQuery AJAX Validation Contact Form with Modal + Slide-in Transition, June 11, 2009">Paul Ross</a>: Gen F20 Plus Ingredients http://besthghsupplement.org/g enf20plusingredients/ Many people have found that...</li>
+	<li><a href="http://jorenrapini.com/blog/css/jquery-validation-contact-form-with-modal-slide-in-transition#comment-4279" title="jQuery AJAX Validation Contact Form with Modal + Slide-in Transition, June 11, 2009">Sean Miller</a>: evansville heating and air conditioning, evansville heating and air, air conditioning evansville indiana...</li>
+	<li><a href="http://jorenrapini.com/blog/css/jquery-validation-contact-form-with-modal-slide-in-transition#comment-4278" title="jQuery AJAX Validation Contact Form with Modal + Slide-in Transition, June 11, 2009">Harold Bailey</a>: bathroom remodeling norman ok, remodeling contractors norman oklahoma, norman oklahoma home remodel...</li>
+	<li><a href="http://jorenrapini.com/blog/css/jquery-validation-contact-form-with-modal-slide-in-transition#comment-4276" title="jQuery AJAX Validation Contact Form with Modal + Slide-in Transition, June 11, 2009">Mary Miller</a>: Forex, GrowthBot http://forexgrowthbotreview.co m/ I Made Almost 1,000% Profit in a Matter of Months....</li>
+</ul>
+                </div>
+                   
+			<div class="sidebar_divider"></div>
+            
+            <div class="item links popular">
+                <h5>Popular Posts</h5>
+                <ul>
+                                
+                <li><a href="http://jorenrapini.com/blog/css/jquery-validation-contact-form-with-modal-slide-in-transition" title="jQuery AJAX Validation Contact Form with Modal + Slide-in Transition">
+                jQuery AJAX Validation Contact Form with Modal + Slide-in Transition</a></li>
+                                
+                <li><a href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution" title="The Simple, Quick, and Small jQuery HTML Form Validation Solution">
+                The Simple, Quick, and Small jQuery HTML Form Validation Solution</a></li>
+                                
+                <li><a href="http://jorenrapini.com/blog/css/super-fantastic-css-navigation-image-rollovers" title="Super Fantastic CSS Navigation Image Rollovers">
+                Super Fantastic CSS Navigation Image Rollovers</a></li>
+                                
+                <li><a href="http://jorenrapini.com/blog/css/transify-a-jquery-plugin-to-easily-apply-transparency-opacity-to-an-elements-background" title="Transify - a jQuery plugin to easily apply transparency / opacity to an element's background">
+                Transify - a jQuery plugin to easily apply transparency / opacity to an element's background</a></li>
+                                
+                <li><a href="http://jorenrapini.com/blog/css/double-body-background-css-trick" title="Double Body Background CSS Trick">
+                Double Body Background CSS Trick</a></li>
+                                
+                </ul>
+            </div>    
+                        
+			<div class="sidebar_divider"></div>
+
+            <div class="item links">
+            	<h5>Favorites</h5>
+            	<ul class="column">
+                	<li><a href="http://www.smashingmagazine.com/">Smashing Magazine</a></li>
+                	<li><a href="http://sixrevisions.com/">Six Revisions</a></li>
+                	<li><a href="http://cameronmoll.com/">Authentic Boredom</a></li>
+                	<li><a href="http://www.free-seo-news.com/index.php">Free SEO News</a></li>
+                	<li><a href="http://www.alistapart.com/">A List Apart</a></li>
+                	<li><a href="http://www.readwriteweb.com/">Read Write Web</a></li>
+                	<li><a href="http://www.devshed.com/">Dev Shed</a></li>
+                	<li><a href="http://www.crazyleafdesign.com/blog/">Crazy Leaf Design</a></li>
+                	<li><a href="http://www.sitepoint.com/">Sitepoint</a></li>
+                	<li><a href="http://designreviver.com/">Design Reviver</a></li>
+                	<li><a href="http://www.bittbox.com/">Bittbox</a></li>
+                	<li><a href="http://nettuts.com/">NETTUTS</a></li>
+                	<li><a href="http://psdtuts.com/">PSDTUTS</a></li>
+                	<li><a href="http://vectortuts.com/">VECTORTUTS</a></li>
+                	<li><a href="http://flash.tutsplus.com/">FLASHTUTS</a></li>
+                	<li><a href="http://inspiredology.com/">Inspiredology</a></li>
+                	<li><a href="http://myinkblog.com/">My Ink Blog</a></li>
+                </ul>
+                <ul class="column right">    
+                	<li><a href="http://psdtop.com/">PSDTop</a></li>
+                	<li><a href="http://weblog.anthonyjamesbruno.com/">Anthony J. Bruno</a></li>
+                	<li><a href="http://thomaswdufour.com/journal/">Thoms W. Dufour</a></li>
+                	<li><a href="http://design-newz.com/">Design Newz</a></li>
+                	<li><a href="http://webdesignledger.com/">Web Design Ledger</a></li>
+                	<li><a href="http://webresourcesdepot.com/">Web Resource Depot</a></li>
+                	<li><a href="http://noupe.com/">Noupe</a></li>
+                	<li><a href="http://designshack.co.uk/">Design Shack</a></li>
+                	<li><a href="http://vandelaydesign.com/blog/">Vandelay Design</a></li>
+                	<li><a href="http://www.blog.spoongraphics.co.uk/">Blog Spoon Graphics</a></li>
+                	<li><a href="http://wefunction.com/">Function</a></li>
+                	<li><a href="http://cssglobe.com/">CSS Globe</a></li>
+                	<li><a href="http://www.webdesignerwall.com/">Web Designer Wall</a></li>
+                	<li><a href="http://reencoded.com/">[Re]Encoded</a></li>
+                	<li><a href="http://fudgegraphics.com/">Fudge Graphics</a></li>
+                	<li><a href="http://smashingapps.com/">Smashing Apps</a></li>
+            	</ul>
+                <br class="clear">
+            </div>
+
+				</div>
+
+
+        <div id="city">
+        	<div id="city-blog"></div>
+            <a href="#nav" id="totop">Back to top</a>
+        </div>
+	</div>   
+</div>    
+
+<div id="footer">
+	<div class="container">
+           <img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/twitterbird.png" alt="" id="birdy" height="19" width="34">
+           <div class="column">
+            	<h5>Most Recent Blog Entries</h5>
+				<ul><li><a href="http://jorenrapini.com/blog/css/transify-a-jquery-plugin-to-easily-apply-transparency-opacity-to-an-elements-background" title="In my search for a solution to make a background / border of an element transparent, I found that there really isn’t a perfect one that fit a particular need. IE6, IE7, and IE8 do not support CSS3’s alpha background color value nor do older versions of other browsers, 8-bit PNG’s do not look great [...]">Transify - a jQuery plugin to easily apply transparency / opacity to an elementâ��s background</a></li><li><a href="http://jorenrapini.com/blog/php/display-random-dynamic-content-with-php-and-xml" title="Every developer, at one point in time, will run into a situation where they need to display a small amount of dynamic data. Why create a whole database? Enter the magical world of XML. XML is easily manageable by anyone who has ever even dabbled a bit in HTML, so understanding should come easily just [...]">Display Random Dynamic Content With PHP and XML</a></li><li><a href="http://jorenrapini.com/blog/javascript/the-simple-quick-and-small-jquery-html-form-validation-solution" title="This is a tutorial on how to write a live validation script for HTML form inputs using jQuery. There are plenty of these out there already, but in most cases I found that they could not be applied quickly. 9 out of 10 websites that I develop need nothing more than a simple validation to [...]">The Simple, Quick, and Small jQuery HTML Form Validation Solution</a></li><li><a href="http://jorenrapini.com/blog/web-design/how-to-kick-off-a-web-design-strategy-client-call" title="That first call you have with your client on constructing your web design vision is probably one of the most important calls you’ll make during a project from start to finish. If you do not ask enough questions, or the right ones, then you are going to end up handing over a design that the [...]">The Right Way To Kick Off A Web Design Strategy Client Call</a></li></ul>  
+            </div>
+            <div class="column">
+                <h5>Latest From Twitter</h5>
+				                </div>
+            <div id="footer_right">
+            	<div class="inside">
+                    <a href="http://feeds.feedburner.com/Joren-Rapini-Web-Design-Development-Blog" class="rss foot_link"><strong>Subscribe</strong><br>to the blog.</a>
+                    <a href="http://twitter.com/jorenrapini" class="twitter foot_link"><strong>Follow me</strong><br>on twitter.</a>
+                    <a href="#nav" class="contact">and last but not least. . . <strong>Contact Me</strong></a>
+                    <p>Copyright ©<script type="text/javascript">var d = new Date();document.write(d.getFullYear());</script>2013 Joren Rapini</p>
+                    <p id="cert_links"><a href="http://validator.w3.org/check?uri=referer">XHTML 1.0</a>, <a href="http://jigsaw.w3.org/css-validator/check?uri=referer">CSS 2</a></p>
+                    <p id="hosting">Hosting Courtesy of <a href="http://fawcettwebservices.com/">Fawcett Web Services Hosting</a></p>
+                 </div>   
+            </div>    
+    </div>
+</div>
+</div>
+<script type="text/javascript" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/shCore.js"></script>
+<script type="text/javascript" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/shBrushCss.js"></script>
+<script type="text/javascript" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/shBrushXml.js"></script>
+<script type="text/javascript" src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/shBrushJScript.js"></script>
+<script type="text/javascript">
+	SyntaxHighlighter.config.clipboardSwf = 'http://jorenrapini.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf';
+	SyntaxHighlighter.config.strings.expandSource = 'expand source';
+	SyntaxHighlighter.config.strings.viewSource = 'view source';
+	SyntaxHighlighter.config.strings.copyToClipboard = 'copy to clipboard';
+	SyntaxHighlighter.config.strings.copyToClipboardConfirmation = 'The code is in your clipboard now';
+	SyntaxHighlighter.config.strings.print = 'print';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.all();
+</script>
+<script type="text/javascript">Cufon.now();</script>
+<script src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/scripts-min.js" type="text/javascript"></script>
+<img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/birdy.jpg" style="display:none;" alt="">
+<img src="The%20Simple,%20Quick,%20and%20Small%20jQuery%20HTML%20Form%20Validation%20Solution%20_%20The%20Blog%20of%20Joren%20Rapini_files/button_bg_over.gif" style="display:none;" alt="">
+<script type="text/javascript">var a=new Date,b=a.getUTCHours();if(0==a.getUTCMonth()&&2012==a.getUTCFullYear()&&((18==a.getUTCDate()&&13<=b)||(19==a.getUTCDate()&&0>=b)))window.location="http://sopastrike.com/strike";</script>
+<!-- NEW SERVER -->
+
+
+</body></html>
