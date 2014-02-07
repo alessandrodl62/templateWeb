@@ -47,7 +47,7 @@ and (max-width : 600px) {
 	.two_third  ,
 	.one_third ,
 	#services .one_half
-	{display:block; float:none; width:auto;}
+	{display:block; float:none; width:auto; margin:0 0 0 0; clear:both}
 	
 	
 	#header, #featured_slide, #container, #footer, #copyright{max-width:460px; margin:0 auto;}

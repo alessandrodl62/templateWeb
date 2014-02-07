@@ -29,6 +29,8 @@ and (max-width : 360px) {
 	#header hgroup{display:block; width:100%; float:none; margin:0 0 15px 0; padding:0; text-align:center;}
 	#header #topnav{display:block; width:100%; float:none; margin:0 auto; padding:0;}
 	
+	#marchio{float:none; margin-left:10px; margin-top:20px; font-size:130%; text-align:center;}
+	
 	#container #homepage #intro article{margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid #DEDEDE;}
 	#container #homepage #intro article.last{padding-bottom:0; border-bottom:none;}
 	#container #homepage #services article{display:block; width:100%; float:none; margin:0 0 20px 0;}
@@ -66,6 +68,8 @@ and (max-width : 600px) {
 	{display:block; width:auto; margin:10px 0 10px 0; clear:both}
 	
 	#header, #featured_slide, #container, #footer, #copyright{max-width:460px; margin:0 auto;}
+	
+	#marchio{margin-left:10px; margin-top:20px; font-size:130%; text-align:center; float:none}
 	
 	.wrapper{padding:0 20px;}
 	
@@ -111,6 +115,8 @@ and (max-width : 800px) {
 
 	#header #topnav{display:block; width:100%; float:none; margin:0; padding:0;}
 	#header #topnav li{float:none; display:inline-block;}
+	
+	#marchio{float:none; margin-left:10px; margin-top:20px; font-size:130%; text-align:center;}
 }
 
 /* 960px */
